@@ -6,7 +6,7 @@
              Title="Lands">
     <ContentPage.Content>
         <ScrollView
-            >
+            BindingContext="{Binding Login}">
             <StackLayout
                 Padding="5">
                 <Image
@@ -30,7 +30,7 @@
                         Grid.Row="0"
                         Grid.Column="1"
                         Keyboard="Email"
-                        
+                        Text="{Binding Email,Mode=TwoWay}"
                         Placeholder="Ingresa tu E-Mail">
                     </Entry>
                     <Label
@@ -43,10 +43,12 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         IsPassword="true"
+                        Text="{Binding Password, Mode=TwoWay}"
                         Placeholder="Password">
                     </Entry>
                 </Grid>
                 <ActivityIndicator
+                    IsRunning="{Binding Isrunnung,Mode=TwoWay}"
                     VerticalOptions="CenterAndExpand">
                 </ActivityIndicator>
                 <StackLayout
@@ -59,6 +61,7 @@
                         VerticalOptions="Center">
                     </Label>
                     <Switch
+                        IsToggled="{Binding IsRemmber,Mode=TwoWay}"
                         HorizontalOptions="End">
                     </Switch>
                 </StackLayout>
@@ -68,6 +71,7 @@
                     Orientation="Horizontal"
                     VerticalOptions="CenterAndExpand">
                     <Button
+                        Command="{Binding LoginCommand}"
                         BackgroundColor="Navy"
                         BorderRadius="23"
                         HeightRequest="46"
