@@ -10,7 +10,7 @@
     class LandsViewModel :BaseViewModel
     {
         #region Services 
-        private ApiServices apiservices; //Instanciar el registro para utilizar los servicios.. lo instanciamos en el contructor
+        private ApiServices apiService; //Instanciar el registro para utilizar los servicios.. lo instanciamos en el contructor
         #endregion
         #region attributes
         //ObservableCollectionara pintarlo en una list
@@ -29,15 +29,27 @@
         #region Contructor
         public LandsViewModel()
         {
-            this.apiservices = new ApiServices();
+            this.apiService = new ApiServices();
             this.LoadLands();
         }
         #endregion
         #region
         public async void LoadLands()
         {
+            var connection = await this.apiService.CheckConnection();
+
+            if (!connection.IsSuccess)
+            {
+                //this.IsRefreshing = false;
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    connection.Message,
+                    "Accept");
+                await Application.Current.MainPage.Navigation.PopAsync();
+                return;
+            }
             //Cargamos las tierras ---esperate ahi (aweit)
-            var response = await this.apiservices.GetList<RootObject>(
+            var response = await this.apiService.GetList<RootObject>(
                 "http://restcountries.eu",
                 "/rest",
                 "/v2/all");
@@ -47,6 +59,7 @@
                     "Error",
                     response.Message,
                     "Aceptar");
+                await Application.Current.MainPage.Navigation.PopAsync();
                 return;
             }
             //castear el object response a la lista de tipo RootObject
