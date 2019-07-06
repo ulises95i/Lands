@@ -2,7 +2,7 @@
 
 namespace lands.Models
 {
-    class RegionalBloc
+    public class RegionalBloc
     {
         [JsonProperty(propertyName: "acronym")]
         public string Acronym { get; set; }

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace lands.Models
 {
-    class Currency
+    public class Currency
     {
         //Nomenclaruta C# Inicio de variables con mayusculas ::: 
         //Formateamos las fechas para que no haya problema al cambiar de nombre las propiedes del json

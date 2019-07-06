@@ -6,35 +6,46 @@ namespace lands.ViewModels
 {
     class MainViewModel
     {
+
+        #region Properties
+       
+        #endregion
+
         #region ViewModels
         public LoginViewModel Login
         {
-            get;set;
+            get;
+            set;
         }
+
         public LandsViewModel Lands
         {
-            get; set;
+            get;
+            set;
         }
+
+       
         #endregion
 
-        #region Contructor
-
+        #region Constructors
         public MainViewModel()
         {
-            //hacer una instancia ya que se incia primero LoginView
+            instance = this;
             this.Login = new LoginViewModel();
         }
         #endregion
 
-        #region Patron Songleton
-        private static MainViewModel isntance;
+        #region Singleton
+        private static MainViewModel instance;
+
         public static MainViewModel GetInstance()
-        {//Permite hacer un llamado de la view model desde cualquier clase
-            if (isntance == null)
+        {
+            if (instance == null)
             {
                 return new MainViewModel();
             }
-            return isntance;
+
+            return instance;
         }
         #endregion
 

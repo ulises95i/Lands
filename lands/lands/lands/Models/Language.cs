@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace lands.Models
 {
-    class Language
+    public class Language
     {
         [JsonProperty(propertyName: "iso639_1")]
         public string Iso6391 { get; set; }

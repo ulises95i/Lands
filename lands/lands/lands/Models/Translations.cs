@@ -2,7 +2,7 @@
 namespace lands.Models
 {
     using Newtonsoft.Json;
-    class Translations
+    public class Translations
     {
         [JsonProperty(propertyName: "de")]
         public string Germany { get; set; }

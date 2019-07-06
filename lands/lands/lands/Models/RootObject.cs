@@ -2,7 +2,7 @@
 {
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    class RootObject
+    public class RootObject
     {
 
         [JsonProperty(propertyName: "name")]
