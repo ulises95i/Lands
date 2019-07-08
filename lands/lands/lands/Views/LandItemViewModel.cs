@@ -22,7 +22,7 @@
         {
             //Invocar el MainViewModel... el metodo singleton para poder tener acceso a la LadPage
             MainViewModel.GetInstance().Land = new LandViewModel(this); ///Pasar un objeto a la vista LandViewModel this.. objeto de la clase(LandItemViewModel)
-            await Application.Current.MainPage.Navigation.PushAsync(new LandPage());
+            await Application.Current.MainPage.Navigation.PushAsync(new LandTabbedPage());// LandPage());
         }
         #endregion
     }
