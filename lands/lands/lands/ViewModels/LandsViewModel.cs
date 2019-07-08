@@ -96,7 +96,7 @@
 
             this.landsList = (List<RootObject>)response.Result;
             //this.Lands = new ObservableCollection<LandItemViewModel >(this.landsList); 
-            //Mar ca error Por ne no nasen des mismo moelo aun que hereda
+            //Mar ca error Por que no nasen del mismo modelo aun que hereda
             //Crracion de un metodo para no repetir codigo (ToLandViewmodel)
             this.Lands = new ObservableCollection<LandItemViewModel>(
                 this.ToLandItemViewModel());
@@ -108,7 +108,7 @@
         #region Methods 
         private IEnumerable<LandItemViewModel> ToLandItemViewModel()
         {
-            //Convertir la lista y regresar un enumerable
+            //Convertir la lista (Land)y regresar un enumerable de (LadItemViewModel)
             /*podriamos hacer un forech pero secolgaria en timepo de proceso:: por ello haremos un linq
              * Selecciona todo de la lista
              */
