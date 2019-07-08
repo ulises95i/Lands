@@ -2,6 +2,7 @@
 {
     using GalaSoft.MvvmLight.Command;
     using lands.Services;
+    using lands.Views;
     using Lands.ViewModels;
     using Models;
     using System.Collections.Generic;
@@ -18,14 +19,18 @@
         #endregion
 
         #region Attributes
-        private ObservableCollection<RootObject> lands;
+        /*private ObservableCollection<RootObject> lands;
+         * La coleccionse va ha basar en LandItemViewModel
+         * Para poder navergar 
+        */
+        private ObservableCollection<LandItemViewModel> lands;
         private bool isRefreshing;
         private string filter;
         private List<RootObject> landsList;
         #endregion
 
         #region Properties
-        public ObservableCollection<RootObject> Lands
+        public ObservableCollection<LandItemViewModel> Lands
         {
             get { return this.lands; }
             set { SetValue(ref this.lands, value); }
@@ -90,13 +95,54 @@
             }
 
             this.landsList = (List<RootObject>)response.Result;
-            this.Lands = new ObservableCollection<RootObject >(this.landsList);
+            //this.Lands = new ObservableCollection<LandItemViewModel >(this.landsList); 
+            //Mar ca error Por ne no nasen des mismo moelo aun que hereda
+            //Crracion de un metodo para no repetir codigo (ToLandViewmodel)
+            this.Lands = new ObservableCollection<LandItemViewModel>(
+                this.ToLandItemViewModel());
                
             this.IsRefreshing = false;
         }
         #endregion
 
-      
+        #region Methods 
+        private IEnumerable<LandItemViewModel> ToLandItemViewModel()
+        {
+            //Convertir la lista y regresar un enumerable
+            /*podriamos hacer un forech pero secolgaria en timepo de proceso:: por ello haremos un linq
+             * Selecciona todo de la lista
+             */
+            return this.landsList.Select(l => new LandItemViewModel
+            {
+                Alpha2Code = l.Alpha2Code,
+                Alpha3Code = l.Alpha3Code,
+                AltSpellings = l.AltSpellings,
+                Area = l.Area,
+                Borders = l.Borders,
+                CallingCodes = l.CallingCodes,
+                Capital = l.Capital,
+                Cioc = l.Cioc,
+                Currencies = l.Currencies,
+                Demonym = l.Demonym,
+                Flag = l.Flag,
+                Gini = l.Gini,
+                Languages = l.Languages,
+                Latlng = l.Latlng,
+                Name = l.Name,
+                NativeName = l.NativeName,
+                NumericCode = l.NumericCode,
+                Population = l.Population,
+                Region = l.Region,
+                RegionalBlocs = l.RegionalBlocs,
+                Subregion = l.Subregion,
+                Timezones = l.Timezones,
+                TopLevelDomain = l.TopLevelDomain,
+                Translations = l.Translations,
+            });
+
+        }
+        #endregion
+
 
         #region Commands
         public ICommand RefreshCommand
@@ -119,13 +165,13 @@
         {
             if (string.IsNullOrEmpty(this.Filter))
             {
-                this.Lands = new ObservableCollection<RootObject>(
-                    this.landsList);
+                this.Lands = new ObservableCollection<LandItemViewModel>(
+                    this.ToLandItemViewModel());
             }
             else
             {
-                this.Lands = new ObservableCollection<RootObject>(
-                    this.landsList.Where(
+                this.Lands = new ObservableCollection<LandItemViewModel>(
+                    this.ToLandItemViewModel().Where(
                         l => l.Name.ToLower().Contains(this.Filter.ToLower()) ||
                              l.Capital.ToLower().Contains(this.Filter.ToLower())));
             }

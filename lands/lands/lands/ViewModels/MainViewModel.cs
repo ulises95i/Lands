@@ -4,6 +4,7 @@ using System.Text;
 
 namespace lands.ViewModels
 {
+    //7Gobierna todas las ViewModel
     class MainViewModel
     {
 
@@ -23,8 +24,13 @@ namespace lands.ViewModels
             get;
             set;
         }
+        public LandViewModel Land
+        {
+            get;
+            set;
+        }
 
-       
+
         #endregion
 
         #region Constructors
