@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace lands.ViewModels
 {
+    using lands.Models;
+    using System.Collections.Generic;
+
     //7Gobierna todas las ViewModel
     class MainViewModel
     {
 
         #region Properties
-       
+        public  List<RootObject> landsList
+        {
+            get;
+            set;
+        }
         #endregion
 
         #region ViewModels

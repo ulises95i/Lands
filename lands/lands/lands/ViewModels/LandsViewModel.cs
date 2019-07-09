@@ -26,7 +26,7 @@
         private ObservableCollection<LandItemViewModel> lands;
         private bool isRefreshing;
         private string filter;
-        private List<RootObject> landsList;
+        //private List<RootObject> landsList; Este atributo lo movemos a MainVewmodel para que pueda hacceder desde cualquir parte
         #endregion
 
         #region Properties
@@ -94,7 +94,7 @@
                 return;
             }
 
-            this.landsList = (List<RootObject>)response.Result;
+            MainViewModel.GetInstance().landsList = (List<RootObject>)response.Result;
             //this.Lands = new ObservableCollection<LandItemViewModel >(this.landsList); 
             //Mar ca error Por que no nasen del mismo modelo aun que hereda
             //Crracion de un metodo para no repetir codigo (ToLandViewmodel)
@@ -112,7 +112,7 @@
             /*podriamos hacer un forech pero secolgaria en timepo de proceso:: por ello haremos un linq
              * Selecciona todo de la lista
              */
-            return this.landsList.Select(l => new LandItemViewModel
+            return MainViewModel.GetInstance().landsList.Select(l => new LandItemViewModel
             {
                 Alpha2Code = l.Alpha2Code,
                 Alpha3Code = l.Alpha3Code,
