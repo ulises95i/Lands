@@ -32,6 +32,6 @@ namespace lands.Models
         public string Croatian { get; set; }
 
         [JsonProperty(propertyName: "fa")]
-        public string Danish { get; set; }
+        public string Persian { get; set; }
     }
 }

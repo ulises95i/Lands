@@ -39,7 +39,7 @@
                                     TextColor="Black">
                                 </Label>
                                 <Label 
-                                    Grid.Column="1"
+                                    Grid.Column="2"
                                     Text="{Binding Symbol}"
                                     TextColor="Black">
                                 </Label>

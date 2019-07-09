@@ -13,6 +13,8 @@
         private ObservableCollection<Borders> bordes;
         //Propiedad para Currensies
         private ObservableCollection<Currency> currencies;
+        //Lenguaje
+        private ObservableCollection<Language> languages;
 
         #endregion
         #region Properties
@@ -31,6 +33,12 @@
             get { return this.currencies; }
             set { SetValue(ref this.currencies, value); }
         }
+        //Properti Languaje
+        public ObservableCollection<Language> Languages
+        {
+            get { return this.languages; }
+            set { SetValue(ref this.languages, value); }
+        }
         #endregion
         //Le estamos obeteniendo el objeto recibido Land
         #region Constructor
@@ -39,6 +47,7 @@
             this.Land = land; ///Lista completa del Json
             this.LoadBordes();//Obtener la lista de Bordes
             this.Currencies = new ObservableCollection<Currency>(this.Land.Currencies);///conversion de la lista en un observable conexcion
+            this.Languages = new ObservableCollection<Language>(this.Land.Languages);
         }
         #endregion
         #region Methods
